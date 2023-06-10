@@ -1,9 +1,7 @@
-# Boilerplate React Knex
+# Eloquence
 
-## Includes
-- React
-- API
-- Knex
+## Writing software
+Eloquence is a novel writing application
 
 ## Setup
 ```sh
