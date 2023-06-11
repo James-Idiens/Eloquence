@@ -3,10 +3,11 @@
  * @returns { Promise<void> }
  */
 exports.up = function(knex) {
-  return knex.schemea.createTable('chapters', (table) => {
+  return knex.schema.createTable('chapters', (table) => {
     table.increments('id').primary();
     table.string('title');
     table.integer('novel_id');
+    table.text('content')
     table.dateTime('created_at');
     table.foreign('novel_id').references('novels.id')
   })

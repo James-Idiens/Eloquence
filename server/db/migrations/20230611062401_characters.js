@@ -3,7 +3,7 @@
  * @returns { Promise<void> }
  */
 exports.up = function(knex) {
-  return knex.schemea.createTable('characters', (table) => {
+  return knex.schema.createTable('characters', (table) => {
     table.increments('id').primary();
     table.string('name');
     table.text('note')

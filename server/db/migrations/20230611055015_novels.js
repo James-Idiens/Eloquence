@@ -2,12 +2,12 @@
  * @param { import("knex").Knex } knex
  * @returns { Promise<void> }
  */
+
 exports.up = function(knex) {
-  return knex.schemea.createTable('novels', (table) => {
+  return knex.schema.createTable('novels', (table) => {
     table.increments('id').primary()
     table.string('title')
     table.string('author')
-    table.text('content')
     table.dateTime('created_at')
   })
   
