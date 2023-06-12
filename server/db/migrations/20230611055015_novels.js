@@ -8,6 +8,7 @@ exports.up = function(knex) {
     table.increments('id').primary()
     table.string('title')
     table.string('author')
+    table.string('genre')
     table.dateTime('created_at')
   })
   
