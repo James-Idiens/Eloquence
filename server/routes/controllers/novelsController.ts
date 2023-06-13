@@ -3,6 +3,16 @@ import connection from '../../db/connection'
 
 const db = connection
 
+// centralised error response function
+const handleError = (
+  res: Response,
+  statusCode: number,
+  errorMessage: string
+) => {
+  console.error(errorMessage)
+  res.status(statusCode).json({ error: errorMessage })
+}
+
 export async function createNovel(req: Request, res: Response) {
   try {
     const { title, author, genre } = req.body
@@ -11,10 +21,7 @@ export async function createNovel(req: Request, res: Response) {
       .status(201)
       .json({ id: newNovelId, message: 'Your novel has been created!' })
   } catch (error) {
-    console.error(error)
-    res
-      .status(500)
-      .json({ error: 'An error occurred while creating your novel' })
+    handleError(res, 500, 'An error occurred while creating your novel')
   }
 }
 
@@ -26,10 +33,7 @@ export async function updateNovel(req: Request, res: Response) {
     await db('novels').where({ id: novelId }).update({ title, author, genre })
     res.status(200).json({ message: 'Novel updated successfully' })
   } catch (error) {
-    console.error(error)
-    res
-      .status(500)
-      .json({ error: 'An error occured while updating your novel' })
+    handleError(res, 500, 'An error occured updating your novel')
   }
 }
 
@@ -46,8 +50,7 @@ export async function getNovel(req: Request, res: Response) {
 
     res.status(200).json(novel)
   } catch (error) {
-    console.error('Error retrieving novel:', error)
-    res.status(500).json({ error: 'Failed to retrieve novel' })
+    handleError(res, 500, 'Failed to retrieve novel')
   }
 }
 
@@ -60,12 +63,6 @@ export async function deleteNovel(req: Request, res: Response) {
 
     res.status(200).json({ message: 'Novel deleted successfully' })
   } catch (error) {
-    console.error('Error deleting novel:', error)
-    res.status(500).json({ error: 'Failed to delete novel' })
+    handleError(res, 500, 'Failed to delete novel')
   }
 }
-
-// createNovel
-// updateNovel
-// getNovel
-// deleteNovel
