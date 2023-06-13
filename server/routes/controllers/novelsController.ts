@@ -13,6 +13,7 @@ const handleError = (
   res.status(statusCode).json({ error: errorMessage })
 }
 
+// create the novel in the database
 export async function createNovel(req: Request, res: Response) {
   try {
     const { title, author, genre } = req.body
@@ -25,11 +26,12 @@ export async function createNovel(req: Request, res: Response) {
   }
 }
 
+// Update the novel in the database
 export async function updateNovel(req: Request, res: Response) {
   try {
     const { title, author, genre } = req.body
     const { novelId } = req.params // Assuming you pass the novelId as a URL parameter
-    // Update the novel in the database
+
     await db('novels').where({ id: novelId }).update({ title, author, genre })
     res.status(200).json({ message: 'Novel updated successfully' })
   } catch (error) {
@@ -37,11 +39,11 @@ export async function updateNovel(req: Request, res: Response) {
   }
 }
 
+// Retrieve the novel from the database
 export async function getNovel(req: Request, res: Response) {
   try {
     const { novelId } = req.params // Assuming you pass the novelId as a URL parameter
 
-    // Retrieve the novel from the database
     const novel = await db('novels').where({ id: novelId }).first()
 
     if (!novel) {
@@ -54,11 +56,11 @@ export async function getNovel(req: Request, res: Response) {
   }
 }
 
+// Delete the novel from the database
 export async function deleteNovel(req: Request, res: Response) {
   try {
     const { novelId } = req.params // Assuming you pass the novelId as a URL parameter
 
-    // Delete the novel from the database
     await db('novels').where({ id: novelId }).del()
 
     res.status(200).json({ message: 'Novel deleted successfully' })
