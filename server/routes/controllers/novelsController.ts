@@ -1,23 +1,20 @@
 import { Request, Response } from 'express'
 import connection from '../../db/connection'
+import handleError from './handleError'
 
 const db = connection
-
-// centralised error response function
-const handleError = (
-  res: Response,
-  statusCode: number,
-  errorMessage: string
-) => {
-  console.error(errorMessage)
-  res.status(statusCode).json({ error: errorMessage })
-}
+const createdAt = new Date(Date.now())
 
 // create the novel in the database
 export async function createNovel(req: Request, res: Response) {
   try {
     const { title, author, genre } = req.body
-    const [newNovelId] = await db('novels').insert({ title, author, genre })
+    const [newNovelId] = await db('novels').insert({
+      title,
+      author,
+      genre,
+      created_at: createdAt,
+    })
     res
       .status(201)
       .json({ id: newNovelId, message: 'Your novel has been created!' })
