@@ -15,8 +15,10 @@ export async function updateScene(
   await db('scenes').where({ id: sceneId }).update(updatedSceneData)
 }
 
-export async function getScene(sceneId: number): Promise<Scene | undefined> {
-  const scene = await db('scenes').where({ id: sceneId }).first()
+export async function getSceneByID(
+  sceneId: number
+): Promise<Scene | undefined> {
+  const scene = await db('scenes').select().where({ id: sceneId }).first()
   return scene
 }
 

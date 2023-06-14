@@ -15,8 +15,10 @@ export async function updateNovel(
   await db('novels').where({ id: novelId }).update(updatedNovelData)
 }
 
-export async function getNovel(novelId: number): Promise<Novel | undefined> {
-  const novel = await db('novels').where({ id: novelId }).first()
+export async function getNovelById(
+  novelId: number
+): Promise<Novel | undefined> {
+  const novel = await db('novels').select().where({ id: novelId }).first()
   return novel
 }
 

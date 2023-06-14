@@ -21,10 +21,13 @@ export async function updateStoryNote(
     .update(updatedStoryNoteData)
 }
 
-export async function getStoryNote(
+export async function getStoryNoteByID(
   storyNoteId: number
 ): Promise<StoryNote | undefined> {
-  const storyNote = await db('story_notes').where({ id: storyNoteId }).first()
+  const storyNote = await db('story_notes')
+    .select()
+    .where({ id: storyNoteId })
+    .first()
   return storyNote
 }
 

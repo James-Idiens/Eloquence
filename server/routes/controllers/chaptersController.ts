@@ -17,10 +17,10 @@ export async function updateChapter(
   await db('chapters').where({ id: chapterId }).update(updatedChapterData)
 }
 
-export async function getChapter(
+export async function getChapterByID(
   chapterId: number
 ): Promise<Chapter | undefined> {
-  const chapter = await db('chapters').where({ id: chapterId }).first()
+  const chapter = await db('chapters').select().where({ id: chapterId }).first()
   return chapter
 }
 
