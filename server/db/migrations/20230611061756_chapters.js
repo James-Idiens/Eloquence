@@ -2,22 +2,21 @@
  * @param { import("knex").Knex } knex
  * @returns { Promise<void> }
  */
-exports.up = function(knex) {
+exports.up = function (knex) {
   return knex.schema.createTable('chapters', (table) => {
-    table.increments('id').primary();
-    table.string('title');
-    table.integer('novel_id');
+    table.increments('id').primary()
+    table.string('title')
+    table.integer('novel_id')
     table.text('content')
-    table.dateTime('created_at');
+    table.dateTime('created_at').defaultTo(knex.fn.now())
     table.foreign('novel_id').references('novels.id')
   })
-  
-};
+}
 
 /**
  * @param { import("knex").Knex } knex
  * @returns { Promise<void> }
  */
-exports.down = function(knex) {
-  return knex.schemea.dropTable('chapters');
-};
+exports.down = function (knex) {
+  return knex.schemea.dropTable('chapters')
+}

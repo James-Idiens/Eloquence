@@ -1,65 +1,33 @@
-import { Request, Response } from 'express'
 import connection from '../../db/connection'
-import handleError from './handleError'
+import { StoryNote, StoryNoteData } from '../../../models/interfaces'
 
 const db = connection
-const createdAt = new Date(Date.now())
 
-export async function createStoryNote(req: Request, res: Response) {
-  try {
-    const { novelId, note } = req.body
-
-    const [newStoryNote] = await db('story_notes')
-      .insert({
-        novel_id: novelId,
-        note,
-        created_at: createdAt,
-      })
-      .returning('*')
-
-    res.status(201).json({ storyNote: newStoryNote })
-  } catch (error) {
-    handleError(res, 500, 'An error occurred while trying to create the note')
-  }
+export async function createStoryNote(
+  newStoryNote: StoryNoteData
+): Promise<StoryNote> {
+  const [insertedStoryNote] = await db('story_notes')
+    .insert(newStoryNote)
+    .returning('*')
+  return insertedStoryNote
 }
 
-export async function updateStoryNote(req: Request, res: Response) {
-  try {
-    const { note } = req.body
-    const { storyNoteId } = req.params
-
-    await db('story_notes').where({ id: storyNoteId }).update({ note })
-
-    res.status(200).json({})
-  } catch (error) {
-    handleError(res, 500, 'An error occurred while trying to update your note')
-  }
+export async function updateStoryNote(
+  storyNoteId: number,
+  updatedStoryNoteData: StoryNoteData
+): Promise<void> {
+  await db('story_notes')
+    .where({ id: storyNoteId })
+    .update(updatedStoryNoteData)
 }
 
-export async function getStoryNote(req: Request, res: Response) {
-  try {
-    const { storyNoteId } = req.params
-
-    const storyNote = await db('story_notes').where({ id: storyNoteId }).first()
-
-    if (!storyNote) {
-      return res.status(404).json({ error: 'Story note not found' })
-    }
-
-    res.status(200).json(storyNote)
-  } catch (error) {
-    handleError(res, 500, 'Failed to retrieve the story note')
-  }
+export async function getStoryNote(
+  storyNoteId: number
+): Promise<StoryNote | undefined> {
+  const storyNote = await db('story_notes').where({ id: storyNoteId }).first()
+  return storyNote
 }
 
-export async function deleteStoryNote(req: Request, res: Response) {
-  try {
-    const { storyNoteId } = req.params
-
-    await db('story_notes').where({ id: storyNoteId }).del()
-
-    res.status(200).json({ message: 'Story note deleted successfully' })
-  } catch (error) {
-    handleError(res, 500, 'Failed to delete the story note')
-  }
+export async function deleteStoryNote(storyNoteId: number): Promise<void> {
+  await db('story_notes').where({ id: storyNoteId }).del()
 }
