@@ -1,7 +1,10 @@
+import NovelForm from './NovelForm'
+
 function App() {
   return (
     <div>
-      <h1>React and Knex Boilerplate</h1>
+      <h1>Create Your Novel</h1>
+      <NovelForm />
     </div>
   )
 }
