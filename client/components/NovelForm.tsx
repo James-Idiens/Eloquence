@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { createNovel } from '../../server/routes/controllers/novelsController'
+import { addNovel } from '../apis/novels'
 
 function NovelForm() {
   const [title, setTitle] = useState('')
@@ -11,7 +11,7 @@ function NovelForm() {
 
     try {
       const newNovel = { title, author, genre }
-      const createdNovel = await createNovel(newNovel)
+      const createdNovel = await addNovel(newNovel)
       console.log('Novel created:', createdNovel)
     } catch (error) {
       console.error('Error creating novel:', error)
