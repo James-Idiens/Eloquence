@@ -8,7 +8,7 @@ exports.up = function (knex) {
     table.string('title')
     table.integer('chapter_id')
     table.text('content')
-    table.dateTime('created_at').defaultTo(knex.fn.now())
+    table.dateTime('created_at')
     table.foreign('chapter_id').references('chapters.id')
   })
 }

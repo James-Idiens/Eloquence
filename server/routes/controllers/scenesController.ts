@@ -4,7 +4,11 @@ import { Scene, SceneData } from '../../../models/interfaces'
 const db = connection
 
 export async function createScene(newScene: SceneData): Promise<Scene> {
-  const [insertedScene] = await db('scenes').insert(newScene).returning('*')
+  const createdAt = new Date().toLocaleString()
+  const sceneWithCreatedAt = { ...newScene, created_at: createdAt }
+  const [insertedScene] = await db('scenes')
+    .insert(sceneWithCreatedAt)
+    .returning('*')
   return insertedScene
 }
 

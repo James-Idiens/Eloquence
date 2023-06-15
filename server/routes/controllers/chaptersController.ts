@@ -4,8 +4,10 @@ import { Chapter, ChapterData } from '../../../models/interfaces'
 const db = connection
 
 export async function createChapter(newChapter: ChapterData): Promise<Chapter> {
+  const createdAt = new Date().toLocaleString()
+  const chapterWithCreatedAt = { ...newChapter, created_at: createdAt }
   const [insertedChapter] = await db('chapters')
-    .insert(newChapter)
+    .insert(chapterWithCreatedAt)
     .returning('*')
   return insertedChapter
 }

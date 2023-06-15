@@ -6,8 +6,10 @@ const db = connection
 export async function createCharacter(
   newCharacter: CharacterData
 ): Promise<Character> {
+  const createdAt = new Date().toLocaleString()
+  const characterWithCreatedAt = { ...newCharacter, created_at: createdAt }
   const [insertedCharacter] = await db('characters')
-    .insert(newCharacter)
+    .insert(characterWithCreatedAt)
     .returning('*')
   return insertedCharacter
 }

@@ -7,7 +7,7 @@ exports.up = function (knex) {
     table.increments('id').primary()
     table.integer('novel_id')
     table.text('note')
-    table.dateTime('created_at').defaultTo(knex.fn.now())
+    table.dateTime('created_at')
     table.foreign('novel_id').references('novels.id')
   })
 }

@@ -6,8 +6,10 @@ const db = connection
 export async function createStoryNote(
   newStoryNote: StoryNoteData
 ): Promise<StoryNote> {
+  const createdAt = new Date().toLocaleString()
+  const storyNoteWithCreatedAt = { ...newStoryNote, created_at: createdAt }
   const [insertedStoryNote] = await db('story_notes')
-    .insert(newStoryNote)
+    .insert(storyNoteWithCreatedAt)
     .returning('*')
   return insertedStoryNote
 }

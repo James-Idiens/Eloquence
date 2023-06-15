@@ -9,7 +9,7 @@ exports.up = function (knex) {
     table.string('title')
     table.string('author')
     table.string('genre')
-    table.dateTime('created_at').defaultTo(knex.fn.now())
+    table.dateTime('created_at')
   })
 }
 
