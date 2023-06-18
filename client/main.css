@@ -22,7 +22,7 @@ body {
   display: flex;
   justify-content: flex-start;
   align-items: center;
-  margin-top: -5vh;
+  margin-top: 0vh;
 }
 
 .laptop-image {
@@ -31,10 +31,27 @@ body {
   margin-right: 20px
 }
 
+.start-writing-button {
+  display: inline-block;
+  padding: 20px 40px;
+  font-size: 20px;
+  background-color: #C0D8F0;
+  color: rgb(0, 0, 0);
+  border-radius: 40px;
+  text-decoration: none;
+  font-weight: bold;
+  position: relative;
+  overflow: hidden;
+}
+
+.start-writing-button:hover {
+  background-color: #A0C6E8;
+}
+
 .form-icon-container {
   display: flex;
   flex-flow: column wrap;
-  align-content: flex-end;
+  align-content: center;
 }
 
 .form-icon {

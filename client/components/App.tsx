@@ -1,21 +1,16 @@
-import NovelForm from './NovelForm'
-import Header from './Header'
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
+import HomePage from './HomePage'
+import NovelListPage from './NovelListPage'
 
 function App() {
   return (
-    <div>
-      <Header />
-      <div>
-        <NovelForm />
-      </div>
-      <div className="laptop-image-container">
-        <img
-          className="laptop-image"
-          src="server/Public/laptopImage.webp"
-          alt="laptop displaying application"
-        ></img>
-      </div>
-    </div>
+    <Router>
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/novels" element={<NovelListPage />} />
+        {/* <Route path="/novels/:id" element={<NovelDetailPage />} /> */}
+      </Routes>
+    </Router>
   )
 }
 
