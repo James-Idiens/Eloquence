@@ -1,4 +1,74 @@
 body {
-  background-color: #faf8f1;
-  color: #0a1520;
+  color: #ffffff;
 }
+
+.page {
+  background: linear-gradient(to right, #051937, #004d7a, #004d7a, #004d7a, #051937);
+  
+}
+
+.header-container {
+  flex-direction: column;
+}
+
+.header-logo {
+  height: 150px;
+  width: auto;
+  margin-top: -30px;
+
+}
+
+.laptop-image-container {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  margin-top: -5vh;
+}
+
+.laptop-image {
+  height: 30vw;
+  width: auto;
+  margin-right: 20px
+}
+
+.form-icon-container {
+  display: flex;
+  flex-flow: column wrap;
+  align-content: flex-end;
+}
+
+.form-icon {
+  width: 100px;
+  height: 10vh;
+  cursor: pointer;
+  border: 1px solid #686767;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  position: relative;
+  color: black;
+}
+
+.form-icon:before {
+  content: "";
+  position: absolute;
+  top: 5px;
+  left: 5px;
+  right: 5px;
+  bottom: 5px;
+
+  border: 1px solid #6d6d6d;
+  border-radius: 3px;
+}
+
+.form-icon:after {
+  content: "";
+  position: absolute;
+  top: 5px;
+  left: 5px;
+  right: 5px;
+  bottom: 5px;
+  border: 1px solid #ccc;
+  border-radius: 2px;
+  box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+

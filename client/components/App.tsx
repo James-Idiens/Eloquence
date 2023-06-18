@@ -1,10 +1,20 @@
 import NovelForm from './NovelForm'
+import Header from './Header'
 
 function App() {
   return (
     <div>
-      <h1>Create Your Novel</h1>
-      <NovelForm />
+      <Header />
+      <div>
+        <NovelForm />
+      </div>
+      <div className="laptop-image-container">
+        <img
+          className="laptop-image"
+          src="server/Public/laptopImage.webp"
+          alt="laptop displaying application"
+        ></img>
+      </div>
     </div>
   )
 }

@@ -5,6 +5,7 @@ function NovelForm() {
   const [title, setTitle] = useState('')
   const [author, setAuthor] = useState('')
   const [genre, setGenre] = useState('')
+  const [showForm, setShowForm] = useState(false)
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
@@ -18,37 +19,49 @@ function NovelForm() {
     }
   }
 
+  const toggleForm = () => {
+    setShowForm(!showForm)
+  }
+
   return (
-    <form onSubmit={handleSubmit}>
-      <div>
-        <label htmlFor="title">Title:</label>
-        <input
-          type="text"
-          id="title"
-          value={title}
-          onChange={(e) => setTitle(e.target.value)}
-        />
-      </div>
-      <div>
-        <label htmlFor="author">Author:</label>
-        <input
-          type="text"
-          id="author"
-          value={author}
-          onChange={(e) => setAuthor(e.target.value)}
-        />
-      </div>
-      <div>
-        <label htmlFor="genre">Genre:</label>
-        <input
-          type="text"
-          id="genre"
-          value={genre}
-          onChange={(e) => setGenre(e.target.value)}
-        />
-      </div>
-      <button type="submit">Create Novel</button>
-    </form>
+    <div className="form-icon-container">
+      {!showForm ? (
+        <button className="form-icon" onClick={toggleForm}>
+          Create Novel
+        </button>
+      ) : (
+        <form onSubmit={handleSubmit}>
+          <div>
+            <label htmlFor="title">Title:</label>
+            <input
+              type="text"
+              id="title"
+              value={title}
+              onChange={(e) => setTitle(e.target.value)}
+            />
+          </div>
+          <div>
+            <label htmlFor="author">Author:</label>
+            <input
+              type="text"
+              id="author"
+              value={author}
+              onChange={(e) => setAuthor(e.target.value)}
+            />
+          </div>
+          <div>
+            <label htmlFor="genre">Genre:</label>
+            <input
+              type="text"
+              id="genre"
+              value={genre}
+              onChange={(e) => setGenre(e.target.value)}
+            />
+          </div>
+          <button type="submit">Create Novel</button>
+        </form>
+      )}
+    </div>
   )
 }
 
