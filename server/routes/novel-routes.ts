@@ -8,16 +8,7 @@ import {
 
 const router = express.Router()
 
-router.get('/', async (req, res) => {
-  try {
-    res.send('This is the homepage')
-  } catch (error) {
-    console.error(error)
-    res.status(500).send('Something went wrong')
-  }
-})
-
-router.post('/novels', async (req, res) => {
+router.post('/', async (req, res) => {
   try {
     const newNovel = req.body
     const createdNovel = await createNovel(newNovel)
@@ -28,7 +19,7 @@ router.post('/novels', async (req, res) => {
   }
 })
 
-router.put('/novels/:id', async (req, res) => {
+router.put('/:id', async (req, res) => {
   try {
     const novelId = parseInt(req.params.id)
     const updatedNovelData = req.body
@@ -42,7 +33,7 @@ router.put('/novels/:id', async (req, res) => {
   }
 })
 
-router.get('/novels/:id', async (req, res) => {
+router.get('/:id', async (req, res) => {
   try {
     const novelId = parseInt(req.params.id)
     const novel = await getNovelById(novelId)
@@ -58,7 +49,7 @@ router.get('/novels/:id', async (req, res) => {
   }
 })
 
-router.delete('/novels/:id', async (req, res) => {
+router.delete('/:id', async (req, res) => {
   try {
     const novelId = parseInt(req.params.id)
     await deleteNovel(novelId)

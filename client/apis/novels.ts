@@ -1,4 +1,3 @@
-import { response } from 'express'
 import { Novel, NovelData } from '../../models/interfaces'
 import request from 'superagent'
 

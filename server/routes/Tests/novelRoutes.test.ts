@@ -1,7 +1,7 @@
 import request from 'supertest'
-import server from '../../../server'
+import server from '../../server'
 import { describe, it, expect, vi } from 'vitest'
-import * as db from '../novelsController'
+import * as db from '../../db/controllers/novelsController'
 
 vi.mock('../novelsController')
 
@@ -39,7 +39,7 @@ describe('POST /api/v1/novels', () => {
 describe('PUT /api/v1/novels/:id', () => {
   it('should update a novel', async () => {
     // Arrange
-    const novelId = 2
+    const novelId = 1
     const updatedNovelData = {
       title: 'Updated Novel',
       author: 'Jane Doe',
