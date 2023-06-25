@@ -2,8 +2,9 @@ import request from 'supertest'
 import server from '../../server'
 import { describe, it, expect, vi } from 'vitest'
 import * as db from '../../db/controllers/novelsController'
+import { error } from 'console'
 
-vi.mock('../novelsController')
+vi.mock('../../db/controllers/novelsController')
 
 describe('POST /api/v1/novels', () => {
   it('should add a novel', async () => {
@@ -33,6 +34,23 @@ describe('POST /api/v1/novels', () => {
         "title": "test novel",
       }
     `)
+  })
+  it('should return status 500 if an error occurs during novel addition', async () => {
+    const errorMessage = 'Failed to create novel'
+    vi.mocked(db.createNovel).mockImplementation(async () => {
+      throw new Error(errorMessage)
+    })
+
+    // Act
+    const response = await request(server).post('/api/v1/novels').send({
+      title: 'error',
+      author: 'John Doe',
+      genre: 'fiction',
+    })
+
+    // Assert
+    expect(response.status).toBe(500)
+    expect(response.text).toBe(errorMessage)
   })
 })
 

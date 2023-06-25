@@ -10,5 +10,9 @@ server.use(express.static(join(__dirname, './public')))
 
 server.use('/api/v1', homeRoutes)
 server.use('/api/v1/novels', novelRoutes)
+// server.use('/api/v1/novels/:id/chapters', chapterRoutes)
+// server.use('/api/v1/novels/:id/chapters/:id/scenes', sceneRoutes)
+// server.use('/api/v1/novels/:id/characters', characterRoutes)
+// server.use('/api/v1/novels/:id/story-notes', storyNoteRoutes)
 
 export default server
