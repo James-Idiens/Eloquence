@@ -13,6 +13,11 @@ export async function updateNovel(
   await request.put(`/api/v1/novels/${novelId}`).send(updatedNovel)
 }
 
+export async function getNovels(): Promise<Novel[]> {
+  const response = await request.get(`/api/v1/novels`)
+  return response.body as Novel[]
+}
+
 export async function getNovelById(novelId: number): Promise<Novel> {
   const response = await request.get(`/api/v1/novels/${novelId}`)
   return response.body

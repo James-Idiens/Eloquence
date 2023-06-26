@@ -3,6 +3,7 @@ import {
   createNovel,
   deleteNovel,
   getNovelById,
+  getNovels,
   updateNovel,
 } from '../db/controllers/novelsController'
 
@@ -13,6 +14,16 @@ router.post('/', async (req, res) => {
     const newNovel = req.body
     const createdNovel = await createNovel(newNovel)
     res.status(201).json(createdNovel)
+  } catch (error) {
+    console.error(error)
+    res.status(500).send('Failed to create novel')
+  }
+})
+
+router.get('/', async (req, res) => {
+  try {
+    const getAllNovels = await getNovels()
+    res.status(201).json(getAllNovels)
   } catch (error) {
     console.error(error)
     res.status(500).send('Failed to create novel')

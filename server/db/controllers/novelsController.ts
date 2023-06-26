@@ -19,6 +19,11 @@ export async function updateNovel(
   await db('novels').where({ id: novelId }).update(updatedNovelData)
 }
 
+export async function getNovels(): Promise<Novel[]> {
+  const novels = await db('novels').select()
+  return novels
+}
+
 export async function getNovelById(
   novelId: number
 ): Promise<Novel | undefined> {
