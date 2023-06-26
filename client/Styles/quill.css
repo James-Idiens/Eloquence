@@ -1,1 +1,32 @@
+.editor-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+  border: #c7c6c6 2px bold;
+}
+
+.ql-editor {
+  background-color: #fff;
+  color: #000;
+  width: 800px;
+  font-family: "Times New Roman", Times, serif;
+  font-size: 12pt;
+  line-height: 1.5;
+  padding: 6em;
+}
+
+.ql-editor p {
+  text-indent: 1.5em;
+}
+
+.ql-toolbar {
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+  background-color: white;
 }
