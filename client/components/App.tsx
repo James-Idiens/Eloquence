@@ -1,6 +1,6 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
-import HomePage from './HomePage'
-import NovelListPage from './NovelListPage'
+import HomePage from '../Pages/HomePage'
+import NovelListPage from '../Pages/NovelListPage'
 import NovelWritingPage from '../Pages/NovelWritingPage'
 
 function App() {

@@ -1,4 +1,4 @@
-import NovelForm from './NovelForm'
+import NovelForm from '../components/NovelForm'
 import { getNovels } from '../apis/novels'
 import { useEffect, useState } from 'react'
 import { Novel } from '../../models/interfaces'
