@@ -11,39 +11,6 @@ body {
   
 }
 
-.header-container {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 10px;
-}
-
-.header-logo {
-  height: 200px;
-  width: auto;
-}
-
-
-.header-about-us {
-  flex-shrink: 1;
-  margin-right: 10px;
-  color: #ffffff;
-  text-decoration: none;
-  font-size: 40px;
-}
-
-.header-faq {
-  flex-shrink: 1;
-  margin-right: 10px;
-  color: #ffffff;
-  text-decoration: none;
-  font-size: 40px;
-}
-
-.header-login {
-  margin-left: 10px;
-}
-
 .laptop-image-container {
   display: flex;
   justify-content: flex-start;
