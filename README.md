@@ -17,7 +17,9 @@ This is my initial plan and design
 ## Plans and functionality
 Eloquence will enable users to break down their novels by both chapters and scenes within chapters. Users can plan out characters and story notes in a dedicated section of the novel.
 Some plans for the future are
-* 
+* Plot mapping features
+* GPT API intergration to utilise AI to assist with novel planning
+   
 ## Setup
 ```sh
 npm install
