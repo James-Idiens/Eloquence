@@ -1,5 +1,5 @@
 # Eloquence
-Eloquence is a novel writing application, created as a personal project during my studies at Dev Academy. It is a passion project and a work in progress. As a writer, I have been inspired by other writing software that I have used. I thought I would attempt to create my own using the tech stack that I was being taught.
+Eloquence is a novel writing application, created as a personal project during my studies at Dev Academy. This is still early in development, but it is a passion project. As a writer, I have been inspired by other writing software that I have used. I thought I would attempt to create my own using the tech stack that I was being taught.
 
 ## Tech
 Eloquence is currently using TypeScript, React, TailwindCss, SQLITE3 (with knex) and Vite. QuillJs is used as the text editor
@@ -21,7 +21,9 @@ Some plans for the future are
 * GPT API intergration to utilise AI to assist with novel planning
    
 ## Setup
+Install dependencies and run seeds, then start the development server
 ```sh
 npm install
+npm run knex seed:run
 npm run dev
 ```
