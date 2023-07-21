@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useState } from 'react'
 import { Chapter } from '../../models/interfaces'
 import { getAllChapters } from '../apis/chapters'
-import { useParams } from 'react-router-dom'
+import { useParams, useNavigate } from 'react-router-dom'
 
 interface ChapterMenuProps {
   setSelectedChapterContent: (content: string) => void
@@ -12,6 +12,7 @@ export default function ChapterMenu({
 }: ChapterMenuProps) {
   const [chapters, setChapters] = useState<Chapter[]>([])
   const { novelId } = useParams()
+  const navigate = useNavigate()
 
   const fetchChapters = useCallback(async () => {
     if (novelId) {
@@ -34,10 +35,14 @@ export default function ChapterMenu({
         {chapters.map((chapter) => (
           <button
             key={chapter.id}
-            onClick={() => handleChapterClick(chapter.content)}
+            onClick={() => {
+              handleChapterClick(chapter.content)
+              navigate(`/novels/${novelId}/chapters/${chapter.id}`)
+            }}
             onKeyDown={(e) => {
               if (e.key === 'Enter') {
                 handleChapterClick(chapter.content)
+                navigate(`/novels/${novelId}/chapters/${chapter.id}`)
               }
             }}
           >

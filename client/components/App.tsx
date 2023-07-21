@@ -10,6 +10,10 @@ function App() {
         <Route path="/" element={<HomePage />} />
         <Route path="/novels" element={<NovelListPage />} />
         <Route path="/novels/:novelId" element={<NovelWritingPage />} />
+        <Route
+          path="/novels/:novelId/chapters/:chapterId"
+          element={<NovelWritingPage />}
+        />
       </Routes>
     </Router>
   )
