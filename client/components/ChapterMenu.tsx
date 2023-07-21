@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useState } from 'react'
 import { Chapter } from '../../models/interfaces'
-import { getAllChapters } from '../apis/chapters'
+import { getAllChapters, updateChapter } from '../apis/chapters'
 import { useParams, useNavigate } from 'react-router-dom'
 
 interface ChapterMenuProps {
@@ -12,6 +12,7 @@ export default function ChapterMenu({
 }: ChapterMenuProps) {
   const [chapters, setChapters] = useState<Chapter[]>([])
   const { novelId } = useParams()
+  const { chapterId } = useParams()
   const navigate = useNavigate()
 
   const fetchChapters = useCallback(async () => {

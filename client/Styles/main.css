@@ -41,45 +41,5 @@ body {
   background-color: #A0C6E8;
 }
 
-.form-icon-container {
-  display: flex;
-  flex-flow: column wrap;
-  align-content: center;
-}
-
-.form-icon {
-  width: 100px;
-  height: 10vh;
-  cursor: pointer;
-  border: 1px solid #686767;
-  border-radius: 5px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-  position: relative;
-  color: black;
-}
-
-.form-icon:before {
-  content: "";
-  position: absolute;
-  top: 5px;
-  left: 5px;
-  right: 5px;
-  bottom: 5px;
-
-  border: 1px solid #6d6d6d;
-  border-radius: 3px;
-}
-
-.form-icon:after {
-  content: "";
-  position: absolute;
-  top: 5px;
-  left: 5px;
-  right: 5px;
-  bottom: 5px;
-  border: 1px solid #ccc;
-  border-radius: 2px;
-  box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.1);
-}
 
 

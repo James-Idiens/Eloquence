@@ -26,39 +26,56 @@ function NovelForm() {
   return (
     <div className="form-icon-container">
       {!showForm ? (
-        <button className="form-icon" onClick={toggleForm}>
+        <button
+          className="form-icon bg-white border border-gray-300 shadow-md rounded-lg w-24 h-24 cursor-pointer flex items-center justify-center text-black"
+          onClick={toggleForm}
+        >
           Create Novel
         </button>
       ) : (
-        <form onSubmit={handleSubmit}>
-          <div>
-            <label htmlFor="title">Title:</label>
+        <form onSubmit={handleSubmit} className="space-y-4">
+          <div className="flex flex-col">
+            <label htmlFor="title" className="font-semibold">
+              Title:
+            </label>
             <input
               type="text"
               id="title"
               value={title}
               onChange={(e) => setTitle(e.target.value)}
+              className="border border-gray-300 rounded-lg p-2 focus:outline-none focus:ring focus:border-blue-300 text-black"
             />
           </div>
-          <div>
-            <label htmlFor="author">Author:</label>
+          <div className="flex flex-col">
+            <label htmlFor="author" className="font-semibold">
+              Author:
+            </label>
             <input
               type="text"
               id="author"
               value={author}
               onChange={(e) => setAuthor(e.target.value)}
+              className="border border-gray-300 rounded-lg p-2 focus:outline-none focus:ring focus:border-blue-300 text-black"
             />
           </div>
-          <div>
-            <label htmlFor="genre">Genre:</label>
+          <div className="flex flex-col">
+            <label htmlFor="genre" className="font-semibold">
+              Genre:
+            </label>
             <input
               type="text"
               id="genre"
               value={genre}
               onChange={(e) => setGenre(e.target.value)}
+              className="border border-gray-300 rounded-lg p-2 focus:outline-none focus:ring focus:border-blue-300 text-black"
             />
           </div>
-          <button type="submit">Create Novel</button>
+          <button
+            type="submit"
+            className="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded-lg"
+          >
+            Create Novel
+          </button>
         </form>
       )}
     </div>

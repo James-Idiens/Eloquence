@@ -17,10 +17,12 @@ export default function NovelListPage() {
   }
 
   return (
-    <div>
+    <div className="flex flex-wrap">
       {novels.map((novel) => (
-        <Link key={novel.id} to={`/novels/${novel.id}`}>
-          <h3>{novel.title}</h3>
+        <Link key={novel.id} to={`/novels/${novel.id}`} className="w-1/3 p-4">
+          <div className="border-2 border-gray-300 rounded-lg p-4 h-full">
+            <h3 className="text-xl font-semibold mb-4">{novel.title}</h3>
+          </div>
         </Link>
       ))}
       <NovelForm />
