@@ -1,17 +1,17 @@
 import express from 'express'
-import { Request, Response } from 'express'
 import {
   createChapter,
   deleteChapter,
   updateChapter,
   getChapterById,
+  getAllChapters,
 } from '../db/controllers/chaptersController'
 
 const router = express.Router()
 
-router.post('/:id/chapters', async (req, res) => {
+router.post('/:novelId/chapters', async (req, res) => {
   try {
-    const novelId = Number(req.params.id)
+    const novelId = Number(req.params.novelId)
     const newChapter = req.body
     const createdChapter = await createChapter(novelId, newChapter)
     res.status(201).json(createdChapter)
@@ -21,9 +21,20 @@ router.post('/:id/chapters', async (req, res) => {
   }
 })
 
-router.get('/:id/chapters/:chapterId', async (req, res) => {
+router.get('/:novelId/chapters', async (req, res) => {
   try {
-    const novelId = Number(req.params.id)
+    const novelId = Number(req.params.novelId)
+    const chapters = await getAllChapters(novelId)
+    res.status(200).json(chapters)
+  } catch (error) {
+    console.error(error)
+    res.status(500).send('Failed to get chapters')
+  }
+})
+
+router.get('/:novelId/chapters/:chapterId', async (req, res) => {
+  try {
+    const novelId = Number(req.params.novelId)
     const chapterId = Number(req.params.chapterId)
     const chapter = await getChapterById(novelId, chapterId)
     res.status(200).json(chapter)
@@ -33,9 +44,9 @@ router.get('/:id/chapters/:chapterId', async (req, res) => {
   }
 })
 
-router.put('/:id/chapters/:chapterId', async (req, res) => {
+router.put('/:novelId/chapters/:chapterId', async (req, res) => {
   try {
-    const novelId = Number(req.params.id)
+    const novelId = Number(req.params.novelId)
     const chapterId = Number(req.params.chapterId)
     const updatedChapterData = req.body
     await updateChapter(novelId, chapterId, updatedChapterData)
@@ -46,9 +57,9 @@ router.put('/:id/chapters/:chapterId', async (req, res) => {
   }
 })
 
-router.delete('/:id/chapters/:chapterId', async (req, res) => {
+router.delete('/:novelId/chapters/:chapterId', async (req, res) => {
   try {
-    const novelId = Number(req.params.id)
+    const novelId = Number(req.params.novelId)
     const chapterId = Number(req.params.chapterId)
     await deleteChapter(novelId, chapterId)
     res.status(200).send('Chapter deleted')

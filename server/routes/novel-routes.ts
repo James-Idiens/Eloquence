@@ -30,9 +30,9 @@ router.get('/', async (req, res) => {
   }
 })
 
-router.put('/:id', async (req, res) => {
+router.put('/:novelId', async (req, res) => {
   try {
-    const novelId = parseInt(req.params.id)
+    const novelId = parseInt(req.params.novelId)
     const updatedNovelData = req.body
 
     await updateNovel(novelId, updatedNovelData)
@@ -44,9 +44,9 @@ router.put('/:id', async (req, res) => {
   }
 })
 
-router.get('/:id', async (req, res) => {
+router.get('/:novelId', async (req, res) => {
   try {
-    const novelId = parseInt(req.params.id)
+    const novelId = parseInt(req.params.novelId)
     const novel = await getNovelById(novelId)
 
     if (!novel) {
@@ -60,9 +60,9 @@ router.get('/:id', async (req, res) => {
   }
 })
 
-router.delete('/:id', async (req, res) => {
+router.delete('/:novelId', async (req, res) => {
   try {
-    const novelId = parseInt(req.params.id)
+    const novelId = parseInt(req.params.novelId)
     await deleteNovel(novelId)
 
     res.sendStatus(204)

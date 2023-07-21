@@ -8,6 +8,11 @@ export async function createChapter(novelId: number, chapterData: ChapterData) {
   return response.body
 }
 
+export async function getAllChapters(novelId: number) {
+  const response = await request.get(`/api/v1/novels/${novelId}/chapters`)
+  return response.body
+}
+
 export async function getChapterById(novelId: number, chapterId: number) {
   const response = await request.get(
     `/api/v1/novels/${novelId}/chapters/${chapterId}`
