@@ -3,7 +3,13 @@ import { Chapter } from '../../models/interfaces'
 import { getAllChapters } from '../apis/chapters'
 import { useParams } from 'react-router-dom'
 
-export default function ChapterMenu() {
+interface ChapterMenuProps {
+  setSelectedChapterContent: (content: string) => void
+}
+
+export default function ChapterMenu({
+  setSelectedChapterContent,
+}: ChapterMenuProps) {
   const [chapters, setChapters] = useState<Chapter[]>([])
   const { novelId } = useParams()
 
@@ -16,13 +22,27 @@ export default function ChapterMenu() {
 
   useEffect(() => {
     fetchChapters()
-  }, [fetchChapters]) // Add fetchChapters to the dependency array
+  }, [fetchChapters])
+
+  const handleChapterClick = (chapterContent: string) => {
+    setSelectedChapterContent(chapterContent)
+  }
 
   return (
     <div>
       <ul>
         {chapters.map((chapter) => (
-          <li key={chapter.id}>{chapter.title}</li>
+          <button
+            key={chapter.id}
+            onClick={() => handleChapterClick(chapter.content)}
+            onKeyDown={(e) => {
+              if (e.key === 'Enter') {
+                handleChapterClick(chapter.content)
+              }
+            }}
+          >
+            {chapter.title}
+          </button>
         ))}
       </ul>
     </div>
