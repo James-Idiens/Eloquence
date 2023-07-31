@@ -24,7 +24,7 @@ function NovelForm() {
   }
 
   return (
-    <div className="form-icon-container">
+    <div>
       {!showForm ? (
         <button
           className="form-icon bg-white border border-gray-300 shadow-md rounded-lg w-24 h-24 cursor-pointer flex items-center justify-center text-black"
