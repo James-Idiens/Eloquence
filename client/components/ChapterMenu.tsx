@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useState } from 'react'
 import { Chapter } from '../../models/interfaces'
-import { getAllChapters, updateChapter } from '../apis/chapters'
+import { createChapter, getAllChapters, updateChapter } from '../apis/chapters'
 import { useParams, useNavigate } from 'react-router-dom'
 
 interface ChapterMenuProps {
@@ -11,7 +11,8 @@ export default function ChapterMenu({
   setSelectedChapterContent,
 }: ChapterMenuProps) {
   const [chapters, setChapters] = useState<Chapter[]>([])
-  const { novelId } = useParams()
+  const [newChapterTitle, setNewChapterTitle] = useState('')
+  const { novelId } = useParams<{ novelId: number }>()
   const { chapterId } = useParams()
   const navigate = useNavigate()
 
@@ -30,8 +31,31 @@ export default function ChapterMenu({
     setSelectedChapterContent(chapterContent)
   }
 
+  const handleCreateChapter = async () => {
+    const newChapterData = {
+      title: newChapterTitle,
+      novel_id: parseInt(novelId, 10),
+      content: '',
+    }
+    const createdChapter = await createChapter(
+      parseInt(novelId, 10),
+      newChapterData
+    )
+    setChapters([...chapters, createdChapter])
+    setNewChapterTitle('') // Clear the input field
+  }
+
   return (
     <div>
+      <div>
+        <input
+          className="text-black"
+          type="text"
+          value={newChapterTitle}
+          onChange={(e) => setNewChapterTitle(e.target.value)}
+        />
+        <button onClick={handleCreateChapter}>Create Chapter</button>
+      </div>
       <ul>
         {chapters.map((chapter) => (
           <button
